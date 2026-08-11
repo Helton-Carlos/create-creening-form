@@ -1,0 +1,215 @@
+/* === DARK MODE BACKGROUND === */
+.dark body {
+  background: linear-gradient(160deg, #3D00BF 0%, #3D00BF 40%, #5904D6 100%);
+}
+
+/* === CARD GLASS === */
+.card-glass {
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dark .card-glass {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html:not(.dark) .card-glass {
+  background: #FFFFFF;
+  border-color: #E6C4FF;
+  box-shadow: 0 4px 30px rgba(93, 4, 214, 0.08);
+}
+
+/* === OPTION PILLS (checkboxes / radios) === */
+.option-pill {
+  border: 1px solid transparent;
+  text-align: center;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.dark .option-pill {
+  background: #1E1530;
+  color: #E6C4FF;
+}
+
+.dark .option-pill:hover {
+  background: #5A1EA0;
+}
+
+html:not(.dark) .option-pill {
+  background: #F2E0FF;
+  color: #5A1EA0;
+}
+
+html:not(.dark) .option-pill:hover {
+  background: #E6C4FF;
+}
+
+/* === INPUT FIELDS === */
+.input-field {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  appearance: none;
+  cursor: pointer;
+}
+
+.input-field:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #AD62FA;
+}
+
+.dark .input-field {
+  background: #1E1530;
+  border: 1px solid #5A1EA0;
+  color: #F2E0FF;
+}
+
+.dark .input-field::placeholder {
+  color: #D4A0FF;
+}
+
+html:not(.dark) .input-field {
+  background: #FBF2FF;
+  border: 1px solid #E6C4FF;
+  color: #2D0065;
+}
+
+html:not(.dark) .input-field::placeholder {
+  color: #7B3FC0;
+}
+
+/* === PRIMARY BUTTON === */
+.btn-primary {
+  background: linear-gradient(135deg, #AD62FA 0%, #5A1EA0 100%);
+  color: white;
+  font-weight: 700;
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  box-shadow: 0 4px 15px rgba(173, 98, 250, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(173, 98, 250, 0.4);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(192, 126, 255, 0.5);
+}
+
+/* === STEP TRANSITIONS === */
+.step-hidden {
+  display: none;
+}
+
+.step-visible {
+  display: block;
+  animation: fadeSlideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* === FLOATING HEARTS === */
+.hearts-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.heart-float {
+  position: absolute;
+  bottom: -30px;
+  animation: floatUp linear infinite;
+}
+
+.dark .heart-float {
+  color: rgba(173, 98, 250, 0.12);
+}
+
+html:not(.dark) .heart-float {
+  color: rgba(93, 4, 214, 0.06);
+}
+
+.heart-1 { width: 20px; left: 8%;  animation-duration: 8s;  animation-delay: 0s; }
+.heart-2 { width: 14px; left: 25%; animation-duration: 10s; animation-delay: 2s; }
+.heart-3 { width: 24px; left: 45%; animation-duration: 12s; animation-delay: 1s; }
+.heart-4 { width: 16px; left: 62%; animation-duration: 9s;  animation-delay: 3s; }
+.heart-5 { width: 22px; left: 78%; animation-duration: 11s; animation-delay: 0.5s; }
+.heart-6 { width: 12px; left: 90%; animation-duration: 7s;  animation-delay: 4s; }
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(20deg) scale(0.6); opacity: 0; }
+}
+
+/* === ACCESSIBILITY === */
+:focus-visible {
+  outline: 2px solid #C07EFF;
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  .step-visible { animation: none; }
+  .heart-float { animation: none; opacity: 0.05; }
+  .btn-primary { transition: none; }
+  .option-pill { transition: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* === MOBILE TWEAKS === */
+@media (max-width: 380px) {
+  .option-pill {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}

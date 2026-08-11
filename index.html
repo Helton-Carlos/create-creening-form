@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Triagem — He4rt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            heart: {
+              900: '#2D0065',
+              800: '#3B0080',
+              700: '#5A1EA0',
+              600: '#7B3FC0',
+              500: '#AD62FA',
+              400: '#C07EFF',
+              300: '#D4A0FF',
+              200: '#E6C4FF',
+              100: '#F2E0FF',
+              50: '#FBF2FF',
+            },
+            accent: {
+              DEFAULT: '#120D1C',
+              light: '#1E1530',
+              mid: '#2A1F3D',
+            },
+            surface: {
+              light: '#F8F6FC',
+              card: '#FFFFFF',
+              muted: '#EDE9F5',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-6 font-sans transition-colors duration-300
+  dark:bg-transparent bg-surface-light">
+
+  <button id="themeToggle" type="button" aria-label="Alternar tema claro/escuro" class="fixed top-4 right-4 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95
+    dark:bg-accent-light dark:text-heart-300 dark:hover:text-white
+    bg-white text-heart-700 hover:text-heart-500 shadow-lg border dark:border-heart-700/30 border-heart-200">
+    <i class="fa-solid fa-moon dark:hidden"></i>
+    <i class="fa-solid fa-sun hidden dark:inline"></i>
+  </button>
+
+  <main class="w-full max-w-lg card-glass rounded-2xl p-5 sm:p-6 md:p-8 shadow-2xl relative z-10 transition-colors duration-300" role="main" aria-labelledby="formTitle">
+    <header class="text-center mb-5 sm:mb-6">
+      <img src="image/Frame 26.svg" alt="He4rt Devs - Logo da comunidade" class="mx-auto mb-3 h-8 sm:h-10 w-auto">
+      <h1 id="formTitle" class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 transition-colors dark:text-white text-heart-900">Formulário de Triagem</h1>
+      <p class="text-xs sm:text-sm transition-colors dark:text-heart-200 text-heart-600">Preencha para entendermos seu perfil na comunidade.</p>
+    </header>
+    <div class="mb-5 sm:mb-6" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do formulário">
+      <div class="flex justify-between mb-1">
+        <span class="text-xs font-medium transition-colors dark:text-heart-300 text-heart-600">Passo <span id="currentStep">1</span> de 9</span>
+        <span class="text-xs font-medium transition-colors dark:text-heart-300 text-heart-600" id="percentLabel">11%</span>
+      </div>
+      <div class="w-full h-1.5 rounded-full overflow-hidden transition-colors dark:bg-accent-light bg-heart-100">
+        <div id="progressBar" class="h-full bg-gradient-to-r from-heart-500 to-heart-300 rounded-full transition-all duration-500" style="width: 11%"></div>
+      </div>
+    </div>
+
+    <form id="triageForm" aria-label="Formulário de triagem da comunidade He4rt">
+
+      <fieldset class="step step-visible" data-step="1" role="group" aria-labelledby="step1-title">
+        <legend class="sr-only" id="step1-title">Passo 1: Área de interesse</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-compass text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Área de interesse</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step1-desc">Selecione uma ou mais áreas</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2" role="group" aria-describedby="step1-desc">
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="area" value="dev" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-code" aria-hidden="true"></i> Dev
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="area" value="design" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-palette" aria-hidden="true"></i> Design
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="area" value="produto" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-box" aria-hidden="true"></i> Produto
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="area" value="conteudo" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-pen-nib" aria-hidden="true"></i> Conteúdo
+            </div>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="2" role="group" aria-labelledby="step2-title">
+        <legend class="sr-only" id="step2-title">Passo 2: Nível técnico percebido</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-signal text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Nível técnico percebido</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step2-desc">Como você se enxerga hoje?</p>
+          </div>
+        </div>
+        <label for="select-nivel" class="sr-only">Selecione seu nível técnico</label>
+        <select id="select-nivel" name="nivel" required aria-describedby="step2-desc" class="input-field">
+          <option value="" disabled selected>Selecione seu nível</option>
+          <option value="iniciante">🌱 Iniciante — Estou começando</option>
+          <option value="intermediario">🌿 Intermediário — Já tenho prática</option>
+          <option value="avancado">🌳 Avançado — Domino bem a área</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="3" role="group" aria-labelledby="step3-title">
+        <legend class="sr-only" id="step3-title">Passo 3: Tecnologias que conhece</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-microchip text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Tecnologias que conhece</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step3-desc">Liste as ferramentas e linguagens que domina</p>
+          </div>
+        </div>
+        <label for="input-tecnologias" class="sr-only">Tecnologias que você conhece</label>
+        <input id="input-tecnologias" type="text" name="tecnologias" placeholder="Ex: HTML, CSS, JavaScript, React, Figma…" aria-describedby="step3-desc" class="input-field">
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="4" role="group" aria-labelledby="step4-title">
+        <legend class="sr-only" id="step4-title">Passo 4: Tempo disponível por semana</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-clock text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Tempo disponível por semana</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step4-desc">Quanto tempo pode dedicar?</p>
+          </div>
+        </div>
+        <label for="select-tempo" class="sr-only">Selecione o tempo disponível</label>
+        <select id="select-tempo" name="tempo" required aria-describedby="step4-desc" class="input-field">
+          <option value="" disabled selected>Selecione uma faixa</option>
+          <option value="1-3h">⏱️ 1–3 horas</option>
+          <option value="4-8h">⏱️ 4–8 horas</option>
+          <option value="8-15h">⏱️ 8–15 horas</option>
+          <option value="15h+">⏱️ 15+ horas</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="5" role="group" aria-labelledby="step5-title">
+        <legend class="sr-only" id="step5-title">Passo 5: Interesse em participar de projetos</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-rocket text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Interesse em participar de projetos</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step5-desc">Quer colocar a mão na massa com a gente?</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step5-desc" aria-label="Interesse em projetos">
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="projetos" value="sim" class="peer sr-only" required>
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-check" aria-hidden="true"></i> Sim
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="projetos" value="talvez" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-question" aria-hidden="true"></i> Talvez
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="projetos" value="nao" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i> Não
+            </div>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="6" role="group" aria-labelledby="step6-title">
+        <legend class="sr-only" id="step6-title">Passo 6: Divulgar a comunidade (opcional)</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-bullhorn text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Divulgar a comunidade</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step6-desc">Opcional — ajude a espalhar a palavra 💜</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step6-desc" aria-label="Interesse em divulgar">
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="divulgar" value="sim" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-heart" aria-hidden="true"></i> Sim, quero!
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="divulgar" value="nao" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-minus" aria-hidden="true"></i> Agora não
+            </div>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="7" role="group" aria-labelledby="step7-title">
+        <legend class="sr-only" id="step7-title">Passo 7: Disponibilidade para desafios</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-trophy text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Disponibilidade para desafios</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step7-desc">Com que frequência topa um desafio?</p>
+          </div>
+        </div>
+        <label for="select-desafios" class="sr-only">Selecione a frequência de desafios</label>
+        <select id="select-desafios" name="desafios" required aria-describedby="step7-desc" class="input-field">
+          <option value="" disabled selected>Selecione a frequência</option>
+          <option value="semanal">🔥 Semanal</option>
+          <option value="quinzenal">⚡ Quinzenal</option>
+          <option value="mensal">📅 Mensal</option>
+          <option value="nao">😌 Não tenho disponibilidade</option>
+        </select>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="8" role="group" aria-labelledby="step8-title">
+        <legend class="sr-only" id="step8-title">Passo 8: Experiência com Git/GitHub (obrigatório)</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-brands fa-github text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Experiência com Git/GitHub</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step8-desc">Obrigatório <span class="text-red-400" aria-label="campo obrigatório">*</span></p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step8-desc" aria-required="true" aria-label="Nível de experiência com Git">
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="git" value="nenhuma" class="peer sr-only" required>
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-seedling" aria-hidden="true"></i> Nenhuma
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="git" value="basico" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-leaf" aria-hidden="true"></i> Básico
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="git" value="intermediario" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-code-branch" aria-hidden="true"></i> Intermediário
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="radio" name="git" value="avancado" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-code-merge" aria-hidden="true"></i> Avançado
+            </div>
+          </label>
+        </div>
+        <div id="gitFallback" class="hidden mt-3 rounded-lg p-3 transition-colors dark:bg-heart-900/50 dark:border-heart-700 bg-heart-50 border border-heart-200" role="alert" aria-live="polite">
+          <p class="text-xs flex items-center gap-2 transition-colors dark:text-heart-200 text-heart-700">
+            <i class="fa-solid fa-lightbulb text-yellow-500" aria-hidden="true"></i>
+            Sem problema! Temos materiais e mentoria para te ajudar a começar com Git/GitHub.
+          </p>
+        </div>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="9" role="group" aria-labelledby="step9-title">
+        <legend class="sr-only" id="step9-title">Passo 9: Preferência de atuação</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-users-gear text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Preferência de atuação</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step9-desc">Onde você se vê contribuindo?</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-describedby="step9-desc">
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="atuacao" value="codigo" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-terminal" aria-hidden="true"></i> Código
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="atuacao" value="design" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Design
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="atuacao" value="organizacao" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-sitemap" aria-hidden="true"></i> Organização
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="atuacao" value="conteudo" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i> Conteúdo
+            </div>
+          </label>
+          <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
+            <input type="checkbox" name="atuacao" value="suporte" class="peer sr-only">
+            <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
+              <i class="fa-solid fa-headset" aria-hidden="true"></i> Suporte
+            </div>
+          </label>
+        </div>
+      </fieldset>
+
+      <nav class="flex justify-between items-center mt-5 sm:mt-6 pt-4 border-t transition-colors dark:border-heart-700/30 border-heart-200" aria-label="Navegação do formulário">
+        <button type="button" id="btnPrev" aria-label="Voltar para o passo anterior" class="hidden transition-all duration-200 flex items-center gap-2 text-sm font-medium px-3 py-2 rounded-lg
+          dark:text-heart-300 dark:hover:text-white dark:hover:bg-accent-light
+          text-heart-600 hover:text-heart-900 hover:bg-heart-100
+          focus:outline-none focus:ring-2 focus:ring-heart-400 active:scale-95">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Anterior
+        </button>
+        <div class="flex-1"></div>
+        <button type="button" id="btnNext" aria-label="Avançar para o próximo passo" class="btn-primary">
+          Próximo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </button>
+        <button type="submit" id="btnSubmit" aria-label="Enviar formulário de triagem" class="hidden btn-primary">
+          <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar Triagem
+        </button>
+      </nav>
+
+    </form>
+
+    <div id="successMsg" class="hidden text-center py-8" role="status" aria-live="polite">
+      <div class="text-5xl mb-3 animate-bounce" aria-hidden="true">💜</div>
+      <h2 class="text-xl font-bold mb-1 transition-colors dark:text-white text-heart-900">Triagem enviada!</h2>
+      <p class="text-sm transition-colors dark:text-heart-200 text-heart-600">Obrigado por preencher. Em breve você receberá um direcionamento.</p>
+    </div>
+  </main>
+
+  <div class="hearts-bg" aria-hidden="true">
+    <svg class="heart-float heart-1" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+    <svg class="heart-float heart-2" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+    <svg class="heart-float heart-3" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+    <svg class="heart-float heart-4" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+    <svg class="heart-float heart-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+    <svg class="heart-float heart-6" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+    </svg>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
