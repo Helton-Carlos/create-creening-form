@@ -1,4 +1,3 @@
-// === THEME TOGGLE ===
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 
@@ -15,7 +14,6 @@ function applyTheme(theme) {
   localStorage.setItem('he4rt-theme', theme);
 }
 
-// Init theme: check storage, then system preference
 const stored = getStoredTheme();
 if (stored) {
   applyTheme(stored);
@@ -28,12 +26,10 @@ if (stored) {
 themeToggle.addEventListener('click', () => {
   const isDark = html.classList.contains('dark');
   applyTheme(isDark ? 'light' : 'dark');
-  // Micro-interaction: spin the icon
   themeToggle.classList.add('animate-spin-once');
   setTimeout(() => themeToggle.classList.remove('animate-spin-once'), 300);
 });
 
-// === STEP NAVIGATION ===
 const totalSteps = 9;
 let current = 1;
 
@@ -89,7 +85,6 @@ btnPrev.addEventListener('click', () => {
   }
 });
 
-// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight' && e.altKey && current < totalSteps) {
     current++;
@@ -101,7 +96,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// === GIT FALLBACK ===
 const gitRadios = document.querySelectorAll('input[name="git"]');
 const gitFallback = document.getElementById('gitFallback');
 
@@ -111,10 +105,8 @@ gitRadios.forEach((radio) => {
   });
 });
 
-// === MICRO-INTERACTIONS: ripple on option pills ===
 document.querySelectorAll('.option-pill').forEach((pill) => {
-  pill.addEventListener('click', function (e) {
-    // Pulse effect
+  pill.addEventListener('click', function () {
     this.style.transform = 'scale(0.93)';
     setTimeout(() => {
       this.style.transform = '';
@@ -122,7 +114,6 @@ document.querySelectorAll('.option-pill').forEach((pill) => {
   });
 });
 
-// === FORM SUBMIT ===
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -141,7 +132,6 @@ form.addEventListener('submit', (e) => {
 
   console.log('Dados da triagem:', data);
 
-  // Micro-interaction: fade out form
   form.style.opacity = '0';
   form.style.transform = 'translateY(-10px)';
   form.style.transition = 'all 0.3s ease';
@@ -153,7 +143,6 @@ form.addEventListener('submit', (e) => {
   }, 300);
 });
 
-// === INIT ===
 steps.forEach((s, i) => {
   if (i > 0) s.setAttribute('aria-hidden', 'true');
 });

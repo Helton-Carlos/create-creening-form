@@ -1,9 +1,7 @@
-/* === DARK MODE BACKGROUND === */
 .dark body {
   background: linear-gradient(160deg, #3D00BF 0%, #3D00BF 40%, #5904D6 100%);
 }
 
-/* === CARD GLASS === */
 .card-glass {
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -20,7 +18,6 @@ html:not(.dark) .card-glass {
   box-shadow: 0 4px 30px rgba(93, 4, 214, 0.08);
 }
 
-/* === OPTION PILLS (checkboxes / radios) === */
 .option-pill {
   border: 1px solid transparent;
   text-align: center;
@@ -53,7 +50,6 @@ html:not(.dark) .option-pill:hover {
   background: #E6C4FF;
 }
 
-/* === INPUT FIELDS === */
 .input-field {
   width: 100%;
   border-radius: 0.5rem;
@@ -89,7 +85,6 @@ html:not(.dark) .input-field::placeholder {
   color: #7B3FC0;
 }
 
-/* === PRIMARY BUTTON === */
 .btn-primary {
   background: linear-gradient(135deg, #AD62FA 0%, #5A1EA0 100%);
   color: white;
@@ -118,7 +113,6 @@ html:not(.dark) .input-field::placeholder {
   box-shadow: 0 0 0 3px rgba(192, 126, 255, 0.5);
 }
 
-/* === STEP TRANSITIONS === */
 .step-hidden {
   display: none;
 }
@@ -129,17 +123,10 @@ html:not(.dark) .input-field::placeholder {
 }
 
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* === FLOATING HEARTS === */
 .hearts-bg {
   position: fixed;
   bottom: 0;
@@ -179,7 +166,33 @@ html:not(.dark) .heart-float {
   100% { transform: translateY(-100vh) rotate(20deg) scale(0.6); opacity: 0; }
 }
 
-/* === ACCESSIBILITY === */
+.watermark {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.watermark img {
+  width: 60vw;
+  max-width: 500px;
+  height: auto;
+  opacity: 0.04;
+}
+
+.dark .watermark img {
+  opacity: 0.04;
+  filter: brightness(3) saturate(0.5);
+}
+
+html:not(.dark) .watermark img {
+  opacity: 0.06;
+}
+
 :focus-visible {
   outline: 2px solid #C07EFF;
   outline-offset: 2px;
@@ -197,7 +210,6 @@ html:not(.dark) .heart-float {
   border-width: 0;
 }
 
-/* === REDUCED MOTION === */
 @media (prefers-reduced-motion: reduce) {
   .step-visible { animation: none; }
   .heart-float { animation: none; opacity: 0.05; }
@@ -206,7 +218,6 @@ html:not(.dark) .heart-float {
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 
-/* === MOBILE TWEAKS === */
 @media (max-width: 380px) {
   .option-pill {
     padding: 0.5rem 0.5rem;
