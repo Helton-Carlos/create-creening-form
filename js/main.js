@@ -30,7 +30,7 @@ themeToggle.addEventListener('click', () => {
   setTimeout(() => themeToggle.classList.remove('animate-spin-once'), 300);
 });
 
-const totalSteps = 9;
+const totalSteps = 10;
 let current = 1;
 
 const steps = document.querySelectorAll('.step');

@@ -61,28 +61,51 @@
     </header>
     <div class="mb-5 sm:mb-6" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do formulário">
       <div class="flex justify-between mb-1">
-        <span class="text-xs font-medium transition-colors dark:text-heart-300 text-heart-600">Passo <span id="currentStep">1</span> de 9</span>
-        <span class="text-xs font-medium transition-colors dark:text-heart-300 text-heart-600" id="percentLabel">11%</span>
+        <span class="text-xs font-medium transition-colors dark:text-heart-300 text-heart-600">Passo <span id="currentStep">1</span> de 10</span>
+        <span class="text-xs font-medium transition-colors dark:text-heart-300 text-heart-600" id="percentLabel">10%</span>
       </div>
       <div class="w-full h-1.5 rounded-full overflow-hidden transition-colors dark:bg-accent-light bg-heart-100">
-        <div id="progressBar" class="h-full bg-gradient-to-r from-heart-500 to-heart-300 rounded-full transition-all duration-500" style="width: 11%"></div>
+        <div id="progressBar" class="h-full bg-gradient-to-r from-heart-500 to-heart-300 rounded-full transition-all duration-500" style="width: 10%"></div>
       </div>
     </div>
 
     <form id="triageForm" aria-label="Formulário de triagem da comunidade He4rt">
 
       <fieldset class="step step-visible" data-step="1" role="group" aria-labelledby="step1-title">
-        <legend class="sr-only" id="step1-title">Passo 1: Área de interesse</legend>
+        <legend class="sr-only" id="step1-title">Passo 1: Identificação</legend>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
+            <i class="fa-solid fa-user text-heart-400"></i>
+          </div>
+          <div>
+            <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Identificação</h2>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step1-desc">Como podemos te chamar?</p>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <div>
+            <label for="input-nome" class="block text-xs font-medium mb-1 transition-colors dark:text-heart-200 text-heart-700">Nome</label>
+            <input id="input-nome" type="text" name="nome" required placeholder="Seu nome completo" aria-describedby="step1-desc" class="input-field">
+          </div>
+          <div>
+            <label for="input-email" class="block text-xs font-medium mb-1 transition-colors dark:text-heart-200 text-heart-700">E-mail</label>
+            <input id="input-email" type="email" name="email" required placeholder="seu@email.com" class="input-field">
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="step step-hidden" data-step="2" role="group" aria-labelledby="step2-title">
+        <legend class="sr-only" id="step2-title">Passo 2: Área de interesse</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-compass text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Área de interesse</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step1-desc">Selecione uma ou mais áreas</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step2-desc">Selecione uma ou mais áreas</p>
           </div>
         </div>
-        <div class="grid grid-cols-2 gap-2" role="group" aria-describedby="step1-desc">
+        <div class="grid grid-cols-2 gap-2" role="group" aria-describedby="step2-desc">
           <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
             <input type="checkbox" name="area" value="dev" class="peer sr-only">
             <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
@@ -110,19 +133,19 @@
         </div>
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="2" role="group" aria-labelledby="step2-title">
-        <legend class="sr-only" id="step2-title">Passo 2: Nível técnico percebido</legend>
+      <fieldset class="step step-hidden" data-step="3" role="group" aria-labelledby="step3-title">
+        <legend class="sr-only" id="step3-title">Passo 3: Nível técnico percebido</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-signal text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Nível técnico percebido</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step2-desc">Como você se enxerga hoje?</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step3-desc">Como você se enxerga hoje?</p>
           </div>
         </div>
         <label for="select-nivel" class="sr-only">Selecione seu nível técnico</label>
-        <select id="select-nivel" name="nivel" required aria-describedby="step2-desc" class="input-field">
+        <select id="select-nivel" name="nivel" required aria-describedby="step3-desc" class="input-field">
           <option value="" disabled selected>Selecione seu nível</option>
           <option value="iniciante">🌱 Iniciante — Estou começando</option>
           <option value="intermediario">🌿 Intermediário — Já tenho prática</option>
@@ -130,34 +153,34 @@
         </select>
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="3" role="group" aria-labelledby="step3-title">
-        <legend class="sr-only" id="step3-title">Passo 3: Tecnologias que conhece</legend>
+      <fieldset class="step step-hidden" data-step="4" role="group" aria-labelledby="step4-title">
+        <legend class="sr-only" id="step4-title">Passo 4: Tecnologias que conhece</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-microchip text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Tecnologias que conhece</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step3-desc">Liste as ferramentas e linguagens que domina</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step4-desc">Liste as ferramentas e linguagens que domina</p>
           </div>
         </div>
         <label for="input-tecnologias" class="sr-only">Tecnologias que você conhece</label>
-        <input id="input-tecnologias" type="text" name="tecnologias" placeholder="Ex: HTML, CSS, JavaScript, React, Figma…" aria-describedby="step3-desc" class="input-field">
+        <input id="input-tecnologias" type="text" name="tecnologias" placeholder="Ex: HTML, CSS, JavaScript, React, Figma…" aria-describedby="step4-desc" class="input-field">
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="4" role="group" aria-labelledby="step4-title">
-        <legend class="sr-only" id="step4-title">Passo 4: Tempo disponível por semana</legend>
+      <fieldset class="step step-hidden" data-step="5" role="group" aria-labelledby="step5-title">
+        <legend class="sr-only" id="step5-title">Passo 5: Tempo disponível por semana</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-clock text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Tempo disponível por semana</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step4-desc">Quanto tempo pode dedicar?</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step5-desc">Quanto tempo pode dedicar?</p>
           </div>
         </div>
         <label for="select-tempo" class="sr-only">Selecione o tempo disponível</label>
-        <select id="select-tempo" name="tempo" required aria-describedby="step4-desc" class="input-field">
+        <select id="select-tempo" name="tempo" required aria-describedby="step5-desc" class="input-field">
           <option value="" disabled selected>Selecione uma faixa</option>
           <option value="1-3h">⏱️ 1–3 horas</option>
           <option value="4-8h">⏱️ 4–8 horas</option>
@@ -166,18 +189,18 @@
         </select>
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="5" role="group" aria-labelledby="step5-title">
-        <legend class="sr-only" id="step5-title">Passo 5: Interesse em participar de projetos</legend>
+      <fieldset class="step step-hidden" data-step="6" role="group" aria-labelledby="step6-title">
+        <legend class="sr-only" id="step6-title">Passo 6: Interesse em participar de projetos</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-rocket text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Interesse em participar de projetos</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step5-desc">Quer colocar a mão na massa com a gente?</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step6-desc">Quer colocar a mão na massa com a gente?</p>
           </div>
         </div>
-        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step5-desc" aria-label="Interesse em projetos">
+        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step6-desc" aria-label="Interesse em projetos">
           <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
             <input type="radio" name="projetos" value="sim" class="peer sr-only" required>
             <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
@@ -199,18 +222,18 @@
         </div>
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="6" role="group" aria-labelledby="step6-title">
-        <legend class="sr-only" id="step6-title">Passo 6: Divulgar a comunidade (opcional)</legend>
+      <fieldset class="step step-hidden" data-step="7" role="group" aria-labelledby="step7-title">
+        <legend class="sr-only" id="step7-title">Passo 7: Divulgar a comunidade (opcional)</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-bullhorn text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Divulgar a comunidade</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step6-desc">Opcional — ajude a espalhar a palavra 💜</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step7-desc">Opcional — ajude a espalhar a palavra 💜</p>
           </div>
         </div>
-        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step6-desc" aria-label="Interesse em divulgar">
+        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step7-desc" aria-label="Interesse em divulgar">
           <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
             <input type="radio" name="divulgar" value="sim" class="peer sr-only">
             <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
@@ -226,19 +249,19 @@
         </div>
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="7" role="group" aria-labelledby="step7-title">
-        <legend class="sr-only" id="step7-title">Passo 7: Disponibilidade para desafios</legend>
+      <fieldset class="step step-hidden" data-step="8" role="group" aria-labelledby="step8-title">
+        <legend class="sr-only" id="step8-title">Passo 8: Disponibilidade para desafios</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-trophy text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Disponibilidade para desafios</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step7-desc">Com que frequência topa um desafio?</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step8-desc">Com que frequência topa um desafio?</p>
           </div>
         </div>
         <label for="select-desafios" class="sr-only">Selecione a frequência de desafios</label>
-        <select id="select-desafios" name="desafios" required aria-describedby="step7-desc" class="input-field">
+        <select id="select-desafios" name="desafios" required aria-describedby="step8-desc" class="input-field">
           <option value="" disabled selected>Selecione a frequência</option>
           <option value="semanal">🔥 Semanal</option>
           <option value="quinzenal">⚡ Quinzenal</option>
@@ -247,18 +270,18 @@
         </select>
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="8" role="group" aria-labelledby="step8-title">
-        <legend class="sr-only" id="step8-title">Passo 8: Experiência com Git/GitHub (obrigatório)</legend>
+      <fieldset class="step step-hidden" data-step="9" role="group" aria-labelledby="step9-title">
+        <legend class="sr-only" id="step9-title">Passo 9: Experiência com Git/GitHub (obrigatório)</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-brands fa-github text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Experiência com Git/GitHub</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step8-desc">Obrigatório <span class="text-red-400" aria-label="campo obrigatório">*</span></p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step9-desc">Obrigatório <span class="text-red-400" aria-label="campo obrigatório">*</span></p>
           </div>
         </div>
-        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step8-desc" aria-required="true" aria-label="Nível de experiência com Git">
+        <div class="flex flex-wrap gap-2" role="radiogroup" aria-describedby="step9-desc" aria-required="true" aria-label="Nível de experiência com Git">
           <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
             <input type="radio" name="git" value="nenhuma" class="peer sr-only" required>
             <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:scale-[0.97]">
@@ -292,18 +315,18 @@
         </div>
       </fieldset>
 
-      <fieldset class="step step-hidden" data-step="9" role="group" aria-labelledby="step9-title">
-        <legend class="sr-only" id="step9-title">Passo 9: Preferência de atuação</legend>
+      <fieldset class="step step-hidden" data-step="10" role="group" aria-labelledby="step10-title">
+        <legend class="sr-only" id="step10-title">Passo 10: Preferência de atuação</legend>
         <div class="flex items-center gap-3 mb-4">
           <div class="w-9 h-9 rounded-lg bg-heart-500/20 flex items-center justify-center shrink-0" aria-hidden="true">
             <i class="fa-solid fa-users-gear text-heart-400"></i>
           </div>
           <div>
             <h2 class="font-semibold text-sm sm:text-base transition-colors dark:text-white text-heart-900">Preferência de atuação</h2>
-            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step9-desc">Onde você se vê contribuindo?</p>
+            <p class="text-xs transition-colors dark:text-heart-300 text-heart-600" id="step10-desc">Onde você se vê contribuindo?</p>
           </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-describedby="step9-desc">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-describedby="step10-desc">
           <label class="cursor-pointer focus-within:ring-2 focus-within:ring-heart-400 rounded-lg">
             <input type="checkbox" name="atuacao" value="codigo" class="peer sr-only">
             <div class="option-pill peer-checked:bg-heart-500 peer-checked:text-white peer-checked:border-heart-400 peer-checked:scale-[0.97]">
